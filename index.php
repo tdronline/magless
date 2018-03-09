@@ -14,13 +14,20 @@
     <title>MagLess</title>
 </head>
 <body>
+<nav class="nav">
+    <div class="logo">
+        <img class="logo-img" src="images/magento-icon.svg" alt="Magento Admin Panel">
+        MagLess
+    </div>
+    <div class="options">
+        <ul>
+            <li>Configs</li>
+            <li></li>
+        </ul></div>
+</nav>
 <div class="container-fluid wrapper">
     <div class="row">
         <div class="col-md-2 sidebar">
-            <div class="logo">
-                <img class="logo-img" src="images/magento-icon.svg" alt="Magento Admin Panel">
-                MagLess
-            </div>
             <ul class="side-nav">
                 <?php
                 $less_files = scandir (VAR_FOLDER);

@@ -30,14 +30,43 @@ h2 {
   height: 100%;
 }
 
+.wrapper {
+  margin-top: 65px;
+}
+
 .contents {
   padding: 20px;
 }
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  border-bottom: 2px solid @border-color;
+  z-index: 10;
+  background-color: #fff;
+  min-height: 65px;
+
+  .options {
+    float: right;
+    padding: 10px;
+    line-height: 42px;
+
+    ul {
+      list-style: none;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
 
 .logo {
-  width: 100%;
+  max-width: 200px;
   padding: 10px;
-  border-bottom: 2px solid @border-color;
   line-height: 40px;
   font-size: 26px;
   font-weight: bold;
@@ -46,6 +75,7 @@ h2 {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  float: left;
 
   img {
     padding-right:  15px;

@@ -9,7 +9,7 @@
 require_once("functions.php");
 
 $less_file = $_POST['lessfile'];
-$less = file_get_contents(VAR_FOLDER.$less_file);
+$less = file_get_contents(SITE_ROOT.VAR_FOLDER.'/'.$less_file);
 $less_array =  preg_split('/\r\n|\r|\n/', $less);
 
 //print_r($less_array); exit;

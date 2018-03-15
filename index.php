@@ -8,7 +8,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/default.css">
 
     <title>MagLess</title>
@@ -20,8 +21,8 @@
         MagLess
     </div>
     <div class="options">
-        <ul>
-            <li>Configs</li>
+        <ul class="options">
+            <li><span class="icon-cog settings" data-toggle="modal" data-target="#infoModal"></span></li>
             <li></li>
         </ul></div>
 </nav>
@@ -30,7 +31,7 @@
         <div class="col-md-2 sidebar">
             <ul class="side-nav">
                 <?php
-                $less_files = scandir (VAR_FOLDER);
+                $less_files = scandir (SITE_ROOT.VAR_FOLDER.'/');
                 foreach ($less_files as $file){
                     if(!in_array($file, array('.','..'))) {
                         $file_name = str_replace('_','',$file);
@@ -48,6 +49,24 @@
                 ?>
             </div>
             <div class="preview"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Large modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infotitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+            </div>
         </div>
     </div>
 </div>
@@ -77,11 +96,36 @@
         });
     });
 
-    $(".contents").on('keypress', 'input', function () {
+    $(".nav").on('keypress', 'input', function () {
         var lessVal = $(this).val();
         if ($(this).val().length > 2) {
             console.log(lessVal);
         }
+    });
+
+    $(".nav").on('click', ".settings", function(){
+        $.ajax({
+            method: "POST",
+            url: "inc/ajax-settings.php"
+            //, data: { lessfile: page }
+        })
+            .done(function( data ) {
+                $("#infotitle").html('Project Settings');
+                $(".modal-body").html(data);
+            });
+    });
+    $(".modal").on('click', ".save-setting", function(){
+        var dir = $("#project-dir").val();
+        var theme = $("#project-name").val();
+        $.ajax({
+            method: "POST",
+            url: "inc/ajax-create.php"
+            , data: { prj_path: dir, prj_name: theme }
+        })
+            .done(function( data ) {
+                $("#infotitle").html('Project Settings');
+                $(".modal-body").html(data);
+            });
     });
 </script>
 </body>

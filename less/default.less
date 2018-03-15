@@ -37,6 +37,7 @@ h2 {
 .contents {
   padding: 20px;
 }
+
 nav {
   position: fixed;
   top: 0;
@@ -60,6 +61,20 @@ nav {
       display: flex;
       margin: 0;
       padding: 0;
+
+      &.options {
+        .icon-cog {
+          color: @link-color;
+          font-size: 28px;
+          padding-top: 8px;
+          display: block;
+          cursor: pointer;
+
+          &:hover {
+            color: lighten(@link-color,20%);
+          }
+        }
+      }
     }
   }
 }
